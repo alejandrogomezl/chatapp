@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-container" class="auth-container">
+        <h2>Inicio de Sesión</h2>
+        <!-- Login Form -->
+        <form id="loginForm">
+            <input type="text" id="loginUsername" placeholder="Usuario" required>
+            <input type="password" id="loginPassword" placeholder="Contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        <p>No tienes una cuenta? <button onclick="showRegister()">Regístrate</button></p>
+    </div>
+
+    <div id="register-container" class="auth-container" style="display:none;">
+        <h2>Registro de Usuario</h2>
+        <!-- Registration Form -->
+        <form id="registerForm">
+            <input type="text" id="registerUsername" placeholder="Usuario" required>
+            <input type="email" id="registerEmail" placeholder="Correo electrónico" required>
+            <input type="password" id="registerPassword" placeholder="Contraseña" required>
+            <button type="submit">Registrar</button>
+        </form>
+        <p>Ya tienes una cuenta? <button onclick="showLogin()">Inicia sesión</button></p>
+    </div>
+
+    <div id="verify-container" class="auth-container" style="display:none;">
+        <h2>Verificar Cuenta</h2>
+        <!-- Verification Form -->
+        <form id="verificationForm">
+            <input type="text" id="verifyCode" placeholder="Código de Verificación" required>
+            <button type="submit">Verificar Cuenta</button>
+        </form>
+    </div>
+
+    <script src="/lib/aws-cognito-sdk.js"></script>
+    <script src="/lib/amazon-cognito-identity.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
