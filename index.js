@@ -1,15 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const apiUrl = 'https://0s8aq29j6d.execute-api.eu-west-3.amazonaws.com/testetp/postmess';
-    const messagesContainer = document.getElementById('chat-messages');
-    const input = document.getElementById('chat-input');
-    const sendButton = document.getElementById('send-button');
-
     const senderId = localStorage.getItem('senderId'); // Obtener senderId del Local Storage
     const receiverId = "user_2"; // Este valor puede ser estático o también manejarse dinámicamente
 
     if (!senderId) {
         window.location.href = 'auth/auth.html'; // Redirige a la página de autenticación si no hay senderId
     }
+
+    const apiUrl = 'https://0s8aq29j6d.execute-api.eu-west-3.amazonaws.com/testetp/postmess';
+    const messagesContainer = document.getElementById('chat-messages');
+    const input = document.getElementById('chat-input');
+    const sendButton = document.getElementById('send-button');
+    const logout = document.getElementById('logout');
+    
 
     // Función para cargar mensajes
     async function loadMessages() {
@@ -77,6 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
             sendMessage(message);
             input.value = ''; // Limpia el campo de entrada.
         }
+    });
+
+    logout.addEventListener('click', () => {
+        localStorage.removeItem('senderId');
+        window.location.href = 'auth/auth.html';
     });
 
     // Cargar mensajes al iniciar
