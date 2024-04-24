@@ -60,7 +60,7 @@ function authenticateUser(username, password) {
           const accessToken = result.getAccessToken().getJwtToken();
           console.log('Access Token:', accessToken);
           localStorage.setItem('senderId', username); // Store senderId in Local Storage
-          alert('Login successful for ' + username);
+          //alert('Login successful for ' + username);
           // Redirect to chat page or enable chat functionality
           window.location.href = '/index.html'; // Assuming chat page is index.html
       },
@@ -86,6 +86,7 @@ function registerUser(username, email, password) {
       }
       cognitoUser = result.user;
       console.log('User name is ' + cognitoUser.getUsername());
+      localStorage.setItem('username', cognitoUser.getUsername());
       showVerification(); // Show verification form
       alert('Registration successful. Please verify your account.');
   });
@@ -93,7 +94,7 @@ function registerUser(username, email, password) {
 
 function verifyUser(code) {
   var userData = {
-      Username: localStorage.getItem('senderId'), // Retrieve senderId for verification
+      Username: localStorage.getItem('username'), // Retrieve senderId for verification
       Pool: userPool
   };
   var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
