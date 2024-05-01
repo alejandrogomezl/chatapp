@@ -34,6 +34,24 @@ body {
 
 }
 
+.conv-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.contact{
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    padding: 10px;
+    background-color: #b6aca1;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
 .messageR {
     display: flex;
     width: fit-content;
@@ -58,6 +76,24 @@ body {
     display: flex;
     padding: 10px;
     border-top: 1px solid #ccc;
+}
+
+#create {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#incont {
+    flex-grow: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
 
 #chat-input {

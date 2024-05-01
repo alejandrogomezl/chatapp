@@ -1,12 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const senderId = localStorage.getItem('senderId'); // Obtener senderId del Local Storage
-    const receiverId = "user_2"; // Este valor puede ser estático o también manejarse dinámicamente
+    const senderId = localStorage.getItem('senderId');
+    const receiverId = localStorage.getItem('receiverId'); 
 
-    if (!senderId) {
-        window.location.href = '/auth/auth.html'; // Redirige a la página de autenticación si no hay senderId
-    }
-
-    const apiUrl = 'https://0s8aq29j6d.execute-api.eu-west-3.amazonaws.com/testetp/postmess';
+    const apiUrl = 'https://f8ywpdj9wl.execute-api.eu-west-3.amazonaws.com/dev/mensajes';
     const messagesContainer = document.getElementById('chat-messages');
     const input = document.getElementById('chat-input');
     const sendButton = document.getElementById('send-button');
@@ -15,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para cargar mensajes
     async function loadMessages() {
-        const queryURL = `https://f87fseo1ee.execute-api.eu-west-3.amazonaws.com/get?senderId=${encodeURIComponent(senderId)}&receiverId=${encodeURIComponent(receiverId)}`;
-    
+        const queryURL = `https://f8ywpdj9wl.execute-api.eu-west-3.amazonaws.com/dev/mensajes?senderId=${encodeURIComponent(senderId)}&receiverId=${encodeURIComponent(receiverId)}`;
+        
         try {
             const response = await fetch(queryURL, {
                 method: 'GET',
@@ -35,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const messages = data; // Si 'data' ya es el array esperado de mensajes
             
             messagesContainer.innerHTML = ''; // Limpiar mensajes anteriores
+
+            const header = document.querySelector('.chat-header');
+            header.textContent = 'Chat con ' + receiverId;
 
             messages.forEach(msg => {
                 const messageDivS = document.createElement('div');
