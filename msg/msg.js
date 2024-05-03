@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const senderId = localStorage.getItem('senderId');
     const receiverId = localStorage.getItem('receiverId'); 
 
-    const apiUrl = 'https://f8ywpdj9wl.execute-api.eu-west-3.amazonaws.com/dev/mensajes';
+    const apiUrl = 'https://f8ywpdj9wl.execute-api.eu-west-3.amazonaws.com/dev/send';
     const messagesContainer = document.getElementById('chat-messages');
     const input = document.getElementById('chat-input');
     const sendButton = document.getElementById('send-button');
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
             const data = await response.json();
             console.log(data); // Asegúrate de que esto coincide con lo que esperas
-            
             const messages = data; // Si 'data' ya es el array esperado de mensajes
             
             messagesContainer.innerHTML = ''; // Limpiar mensajes anteriores
@@ -39,11 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const messageDivS = document.createElement('div');
                 const messageDivR = document.createElement('div');
                 if (msg.SenderID === senderId) {
-                    messageDivS.classList.add('messageS');
+                    messageDivS.classList.add('messageR');
                     messageDivS.textContent = msg.Message;
                     messagesContainer.appendChild(messageDivS);
                 } else {
-                    messageDivR.classList.add('messageR');
+                    messageDivR.classList.add('messageS');
                     messageDivR.textContent = msg.Message;
                     messagesContainer.appendChild(messageDivR);
                 }
@@ -99,5 +98,5 @@ document.addEventListener('DOMContentLoaded', () => {
     loadMessages();
 
     // Configurar intervalo para recargar mensajes cada cierto tiempo
-    setInterval(loadMessages, 5000); // Carga mensajes cada 5 segundos
+    setInterval(loadMessages, 1000); // Carga mensajes cada 5 segundos
 });
